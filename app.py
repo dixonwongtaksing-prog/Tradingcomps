@@ -6,8 +6,11 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import yfinance as yf
 from datetime import datetime, timedelta
+from pathlib import Path
 import warnings
 warnings.filterwarnings("ignore")
+
+HERE = Path(__file__).parent
 
 st.set_page_config(
     page_title="Services Sector Comps",
@@ -61,7 +64,7 @@ div[data-testid="stDataFrame"] table { background: #161b22 !important; }
 # ── Data Loading ──────────────────────────────────────────────────────────────
 @st.cache_data(ttl=3600)
 def load_universe():
-    df = pd.read_excel("expanded_services_universe_us_uk.xlsx")
+    df = pd.read_excel(HERE / "expanded_services_universe_us_uk.xlsx")
     df.columns = df.columns.str.strip()
     # Suffix UK tickers for yfinance
     def fix_ticker(row):
