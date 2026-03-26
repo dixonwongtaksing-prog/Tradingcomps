@@ -64,7 +64,7 @@ div[data-testid="stDataFrame"] table { background: #161b22 !important; }
 # ── Data Loading ──────────────────────────────────────────────────────────────
 @st.cache_data(ttl=3600)
 def load_universe():
-    df = pd.read_excel(HERE / "expanded_services_universe_us_uk.xlsx")
+    df = pd.read_csv(HERE / "universe.csv")
     df.columns = df.columns.str.strip()
     # Suffix UK tickers for yfinance
     def fix_ticker(row):
